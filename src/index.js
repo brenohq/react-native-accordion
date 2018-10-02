@@ -3,11 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  StyleSheet,
   TouchableHighlight,
   View,
-  Text,
-  Platform,
   Animated
 } from 'react-native';
 
@@ -34,7 +31,7 @@ const defaultProps = {
 
 class Accordion extends Component {
   state = {
-    is_visible: false || this.props.expanded,
+    is_visible: this.props.expanded,
     height: null,
     content_height: 0
   };
