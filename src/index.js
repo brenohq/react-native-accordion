@@ -25,7 +25,7 @@ const propTypes = {
 
 const defaultProps = {
   activeOpacity: 1,
-  animationDuration: 300,
+  animationDuration: 400,
   easing: 'linear',
   expanded: false,
   underlayColor: '#000',
@@ -34,8 +34,8 @@ const defaultProps = {
 
 class Accordion extends Component {
   state = {
-    is_visible: this.props.expanded,
-    height: new Animated.Value(0),
+    is_visible: false || this.props.expanded,
+    height: null,
     content_height: 0
   };
 
@@ -45,6 +45,7 @@ class Accordion extends Component {
     // See https://github.com/facebook/react-native/issues/953
     setTimeout(this._getContentHeight);
   }
+
 
   close = () => {
     this.state.is_visible && this.toggle();
@@ -56,7 +57,6 @@ class Accordion extends Component {
 
   toggle = () => {
     this.setState({ is_visible: !this.state.is_visible }); 
-
     Animated.timing(
       this.state.height,
       {
@@ -108,8 +108,8 @@ class Accordion extends Component {
             overflow: 'scroll'
           }}
         >
-          <View ref="AccordionContent">
-            {(Platform.OS === 'ios' || this.state.is_visible) ? this.props.content : null}
+          <View ref="AccordionContent" collapsable={false} >
+            {this.props.content}
           </View>
         </Animated.View>
       </View>
