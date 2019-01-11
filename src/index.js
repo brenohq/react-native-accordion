@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component, } from 'react';
 import PropTypes from 'prop-types';
 import {
   TouchableHighlight,
@@ -22,7 +22,7 @@ const propTypes = {
 
 const defaultProps = {
   activeOpacity: 1,
-  animationDuration: 400,
+  animationDuration: 100,
   easing: 'linear',
   expanded: false,
   underlayColor: '#000',
@@ -33,7 +33,8 @@ class Accordion extends Component {
   state = {
     is_visible: this.props.expanded,
     height: null,
-    content_height: 0
+    content_height: 0,
+    header_disable: false
   };
 
   componentDidMount() {
@@ -42,7 +43,6 @@ class Accordion extends Component {
     // See https://github.com/facebook/react-native/issues/953
     setTimeout(this._getContentHeight);
   }
-
 
   close = () => {
     this.state.is_visible && this.toggle();
@@ -63,12 +63,18 @@ class Accordion extends Component {
     ).start();
   };
 
+  _setHeaderState (flag) {
+    this.setState({ header_disable: flag });
+  }
+
   _onPress = () => {
+    this._setHeaderState(true)
     this.toggle();
 
     if (this.props.onPress) {
       this.props.onPress.call(this);
     }
+    setTimeout(() => this._setHeaderState(false), this.props.animationDuration)
   };
 
   _getContentHeight = () => {
@@ -91,8 +97,9 @@ class Accordion extends Component {
         }}
       >
         <TouchableHighlight
+          disabled={this.state.header_disable}
           ref="AccordionHeader"
-          onPress={this._onPress}
+          onPress={() => this._onPress()}
           underlayColor={this.props.underlayColor}
           style={this.props.style}
         >
