@@ -67,12 +67,12 @@ class Accordion extends Component {
     this.setState({ header_disable: flag });
   }
 
-  _onPress = () => {
+  _onPress = ({isOpen}) => {
     this._setHeaderState(true)
     this.toggle();
 
     if (this.props.onPress) {
-      this.props.onPress.call(this);
+      this.props.onPress.call(this, !isOpen);
     }
     setTimeout(() => this._setHeaderState(false), this.props.animationDuration)
   };
@@ -99,7 +99,7 @@ class Accordion extends Component {
         <TouchableHighlight
           disabled={this.state.header_disable}
           ref="AccordionHeader"
-          onPress={() => this._onPress()}
+          onPress={() => this._onPress({ isOpen: this.state.is_visible })}
           underlayColor={this.props.underlayColor}
           style={this.props.style}
         >
