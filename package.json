@@ -1,5 +1,5 @@
 {
-  "name": "@mrcluc/react-native-accordion",
+  "name": "@brenohq/react-native-accordion",
   "version": "2.0.10",
   "description": "An Accordion Component for React Native",
   "main": "index.js",
@@ -19,7 +19,23 @@
     "react-native-component"
   ],
   "author": "Naoufal Kadhom <naoufalkadhom@gmail.com> (https://github.com/naoufal)",
-  "contributors": "Ernesto R. C. Pereda <ercp42@gmail.com> (https://github.com/ercpereda), Marcos L. R. Rios <marcoslucsrios@gmail.com> (https://github.com/mrcluc)",
+  "contributors": [
+    {
+      "name": "Ernesto R. C. Pereda",
+      "email": "ercp42@gmail.com",
+      "url": "https://github.com/ercpereda"
+    },
+    {
+      "name": "Marcos L. R. Rios",
+      "email": "marcoslucsrios@gmail.com",
+      "url": "https://github.com/mrcluc"
+    },
+    {
+      "name": "Breno Henrique de Lima Freitas",
+      "email": "contato@brenohq.com",
+      "url": "https://github.com/brenohq"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mrcluc/react-native-accordion/issues"
